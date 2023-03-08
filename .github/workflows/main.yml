@@ -30,35 +30,13 @@ jobs:
     - name: Run Coverage
       run: ./gradlew jacocoTestReport
 
-    - name: Upload Report
-      uses: 'actions/upload-artifact@v2'
+    - name: Upload Jacoco coverage report
+      uses: actions/upload-artifact@v3
       with:
-        name: report.xml
-        path: ${{ github.workspace }}/build/reports/jacoco/jacocoTestReport/testCoverage.xml
-        token: ${{ secrets.GITHUB_TOKEN }}
+        name: jacoco-report
+        path: target/site/jacoco/
         
-        
-    - name: JaCoCo Code Coverage Report
-      id: jacoco_reporter
-      uses: PavanMudigonda/jacoco-reporter@v4.5
-      with:
-        coverage_results_path: ${{ github.workspace }}/build/reports/jacoco/jacocoTestReport/testCoverage.xml
-        coverage_report_name: Coverage
-        coverage_report_title: JaCoCo
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        skip_check_run: false
-        minimum_coverage: 80
-        fail_below_threshold: false
-        publish_only_summary: false
-
-      # uploads the coverage-report.md artifact    
-    - name: Upload Code Coverage Artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: code-coverage-report
-        path: "*/coverage-results.md"
-        retention-days: 1  
-          
+      
     - name: Get the Coverage info
       run: |
         echo "Total coverage coverage-overall ${{ steps.jacoco.outputs.coverage-overall }}"
