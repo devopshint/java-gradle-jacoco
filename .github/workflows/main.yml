@@ -34,7 +34,7 @@ jobs:
       uses: 'actions/upload-artifact@v2'
       with:
         name: report.xml
-        path: ${{ github.workspace }}/build/reports/jacoco/testCoverage/testCoverage.xml
+        path: ${{ github.workspace }}/build/reports/jacoco/jacocoTestReport/testCoverage.xml
         token: ${{ secrets.GITHUB_TOKEN }}
         
         
@@ -42,7 +42,7 @@ jobs:
       id: jacoco_reporter
       uses: PavanMudigonda/jacoco-reporter@v4.5
       with:
-        coverage_results_path: ${{ github.workspace }}/build/reports/jacoco/testCoverage/testCoverage.xml
+        coverage_results_path: ${{ github.workspace }}/build/reports/jacoco/jacocoTestReport/testCoverage.xml
         coverage_report_name: Coverage
         coverage_report_title: JaCoCo
         github_token: ${{ secrets.GITHUB_TOKEN }}
