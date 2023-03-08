@@ -13,13 +13,15 @@ apply plugin: "jacoco"
 
 
 
-jacocoTestReport{
+tasks.create(name: "testCoverage", type: JacocoReport) {
+
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports for the test build."
+
     reports {
-            xml.enabled false
-            csv.enabled false
-            html.destination "${buildDir}/jacocoHtml"
+        html.enabled = true
+        xml.enabled = true
     }
-}
 
 
 test {
