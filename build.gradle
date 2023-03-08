@@ -22,7 +22,7 @@ tasks.create(name: "testCoverage", type: JacocoReport) {
         html.enabled = true
         xml.enabled = true
     }
-
+}
 
 test {
     finalizedBy jacocoTestReport // report is always generated after tests run
